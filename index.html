@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMaterial | Material Selection System</title>
+    <meta name="description" content="AI-powered smart material selection system for engineers and designers. Optimize for load, temperature, and environment.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <header>
+        <div class="navbar glass">
+            <div class="logo">Smart<span>Material</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Dashboard</a></li>
+                    <li><a href="#database">Database</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero">
+            <h1>Select the <span>Perfect</span> Material</h1>
+            <p>Enter your design requirements to get an intelligent material recommendation.</p>
+        </section>
+
+        <section class="selection-container">
+            <div class="input-card glass">
+                <h3>Design Requirements</h3>
+                <form id="requirements-form">
+                    <div class="input-group">
+                        <label for="load">Target Load (kN)</label>
+                        <input type="number" id="load" placeholder="e.g. 50" required min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="temperature">Operating Temp (°C)</label>
+                        <input type="number" id="temperature" placeholder="e.g. 150" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="environment">Environment</label>
+                        <select id="environment">
+                            <option value="mild">Mild (Indoor)</option>
+                            <option value="moderate">Moderate (Outdoor)</option>
+                            <option value="harsh">Harsh (Marine/Chemical)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Analyze Materials</button>
+                </form>
+            </div>
+
+            <div class="result-display" id="result-display">
+                <div class="empty-state">
+                    <p>Enter requirements on the left to see recommendations here.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparison-section glass" id="comparison-section" style="display: none;">
+            <h2>Material Comparison Matrix</h2>
+            <div class="table-wrapper">
+                <table id="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Strength (MPa)</th>
+                            <th>Density (kg/m³)</th>
+                            <th>Max Temp (°C)</th>
+                            <th>Suitability Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <p>&copy; 2026 SmartMaterial Systems. Designed for Excellence.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
