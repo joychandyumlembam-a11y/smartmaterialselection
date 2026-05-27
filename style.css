@@ -345,6 +345,7 @@ html[data-theme="dark"] .background-gradient {
     margin-bottom: var(--space-lg);
     color: var(--color-text-primary);
     letter-spacing: -0.04em;
+    white-space: nowrap;
 }
 
 .hero-description {
