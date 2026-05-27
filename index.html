@@ -3,87 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartMaterial | Material Selection System</title>
-    <meta name="description" content="AI-powered smart material selection system for engineers and designers. Optimize for load, temperature, and environment.">
+    <title>SmartMaterial | Intelligent Material Selection Platform</title>
+    <meta name="description" content="AI-powered intelligent material selection platform for engineers. Optimize designs with data-driven material recommendations.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
-    <div class="background-overlay"></div>
+    <div class="background-gradient"></div>
     
-    <header>
-        <div class="navbar glass">
-            <div class="logo">Smart<span>Material</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Dashboard</a></li>
-                    <li><a href="#database">Database</a></li>
-                </ul>
+    <header class="navbar-header">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <svg class="brand-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <rect x="4" y="4" width="8" height="8" fill="#1e40af" rx="2"/>
+                    <rect x="16" y="4" width="8" height="8" fill="#3b82f6" rx="2"/>
+                    <rect x="4" y="16" width="8" height="8" fill="#3b82f6" rx="2"/>
+                    <rect x="16" y="16" width="8" height="8" fill="#60a5fa" rx="2"/>
+                </svg>
+                <h1 class="brand-name">SmartMaterial</h1>
+            </div>
+            <nav id="primary-navigation" class="navbar-nav" aria-label="Primary">
+                <a href="#home" class="nav-link active">Dashboard</a>
+                <a href="#database" class="nav-link">Materials</a>
+                <a href="#analysis" class="nav-link">Analyze</a>
             </nav>
+            <div class="navbar-actions">
+                <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+                    <span class="menu-toggle-line"></span>
+                    <span class="menu-toggle-line"></span>
+                    <span class="menu-toggle-line"></span>
+                </button>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="toggle-icon">☀️</span>
+                    <span class="toggle-label">Dark mode</span>
+                </button>
+                <div class="navbar-badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">Production Ready</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main id="home">
-        <section class="hero">
-            <h1>Select the <span>Perfect</span> Material</h1>
-            <p>Enter your design requirements to get an intelligent material recommendation.</p>
-        </section>
 
-        <section class="selection-container">
-            <div class="input-card glass">
-                <h3>Design Requirements</h3>
-                <form id="requirements-form">
-                    <div class="input-group">
-                        <label for="load">Target Load (kN)</label>
-                        <input type="number" id="load" placeholder="e.g. 50" required min="1">
+    <main id="home" class="main-container">
+        <section class="hero-section">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <h1 class="hero-title">Select the perfect material.</h1>
+                    <p class="hero-description">Choose the right material with smart engineering insights and data-driven confidence.</p>
+                    <div class="hero-actions">
+                        <a href="#analysis" class="btn-primary">Get Started</a>
+                        <a href="#results-section" class="btn-secondary">Explore Insights</a>
                     </div>
-                    <div class="input-group">
-                        <label for="temperature">Operating Temp (°C)</label>
-                        <input type="number" id="temperature" placeholder="e.g. 150" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="environment">Environment</label>
-                        <select id="environment">
-                            <option value="mild">Mild (Indoor)</option>
-                            <option value="moderate">Moderate (Outdoor)</option>
-                            <option value="harsh">Harsh (Marine/Chemical)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Analyze Materials</button>
-                </form>
-            </div>
-
-            <div class="result-display" id="result-display">
-                <div class="empty-state">
-                    <p>Enter requirements on the left to see recommendations here.</p>
                 </div>
             </div>
         </section>
 
-        <section class="comparison-section glass" id="comparison-section" style="display: none;">
-            <h2>Material Comparison Matrix</h2>
-            <div class="table-wrapper">
-                <table id="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Material</th>
-                            <th>Strength (MPa)</th>
-                            <th>Density (kg/m³)</th>
-                            <th>Max Temp (°C)</th>
-                            <th>Suitability Score</th>
-                        </tr>
-                    </thead>
-                    <tbody id="comparison-body">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
+        <section class="database-section" id="database">
+            <div class="section-header">
+                <h2>Material Database</h2>
+                <p>Explore every material available in the SmartMaterial platform.</p>
+            </div>
+            <div id="material-list" class="material-grid"></div>
+        </section>
+
+        <section id="analysis" class="analysis-section">
+            <div class="section-header">
+                <h2>Material Analysis</h2>
+                <p>Define your engineering requirements and discover optimal material selections</p>
+            </div>
+
+            <div class="analysis-grid">
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h3>Design Parameters</h3>
+                        <p>Specify your engineering constraints</p>
+                    </div>
+
+                    <form id="requirements-form" class="requirements-form">
+                        <div class="form-group">
+                            <label for="load" class="form-label">Target Load <span class="form-unit">kN</span></label>
+                            <input type="number" id="load" class="form-input" placeholder="50" required min="1">
+                            <span class="form-helper">Structural load capacity requirement</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="temperature" class="form-label">Operating Temperature <span class="form-unit">°C</span></label>
+                            <input type="number" id="temperature" class="form-input" placeholder="150" required>
+                            <span class="form-helper">Maximum sustained operating temperature</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="environment" class="form-label">Environmental Exposure</label>
+                            <select id="environment" class="form-input form-select">
+                                <option value="mild">Mild (Indoor, Controlled)</option>
+                                <option value="moderate">Moderate (Outdoor, Standard)</option>
+                                <option value="harsh">Harsh (Marine, Chemical)</option>
+                            </select>
+                            <span class="form-helper">Operating environment conditions</span>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-icon">→</span>
+                            Analyze Materials
+                        </button>
+                    </form>
+                </div>
+
+                <div class="result-panel">
+                    <div id="result-display" class="result-content">
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <rect x="8" y="8" width="10" height="10" fill="#d1d5db" rx="2"/>
+                                    <rect x="22" y="8" width="10" height="10" fill="#d1d5db" rx="2"/>
+                                    <rect x="8" y="22" width="10" height="10" fill="#d1d5db" rx="2"/>
+                                    <rect x="22" y="22" width="10" height="10" fill="#d1d5db" rx="2"/>
+                                    <rect x="8" y="36" width="24" height="4" fill="#d1d5db" rx="2"/>
+                                </svg>
+                            </div>
+                            <h3 class="empty-title">Ready to Analyze</h3>
+                            <p class="empty-description">Enter your design parameters to discover optimal material recommendations</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-    </main>
 
-    <footer class="glass">
-        <p>&copy; 2026 SmartMaterial Systems. Designed for Excellence.</p>
-    </footer>
+        <section class="results-section" id="results-section" style="display: none;">
+            <div class="section-header">
+                <h2>Analysis Results</h2>
+                <p>Data-driven material recommendations tailored to your specifications</p>
+            </div>
+
+            <div id="detailed-results" class="results-container">
+                <!-- Results populated by JavaScript -->
+            </div>
+
+            <section class="comparison-section" id="comparison-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Material Comparison</h2>
+                    <p>Side-by-side evaluation of all analyzed materials</p>
+                </div>
+                <div class="table-container">
+                    <table id="comparison-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Material</th>
+                                <th>Strength</th>
+                                <th>Density</th>
+                                <th>Max Temp</th>
+                                <th>Corrosion</th>
+                                <th>Match Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="charts-section" id="charts-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Material Analytics</h2>
+                    <p>Interactive visualizations of material properties and performance</p>
+                </div>
+                
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Strength Profile</h3>
+                        <canvas id="strengthChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Density Distribution</h3>
+                        <canvas id="densityChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Temperature Limits</h3>
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Cost Factor</h3>
+                        <canvas id="costChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="charts-wide">
+                    <div class="chart-card chart-full">
+                        <h3>Material Properties Matrix</h3>
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card chart-full">
+                        <h3>Strength vs Density Analysis</h3>
+                        <canvas id="bubbleChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
 
     <script type="application/ld+json">
     {
